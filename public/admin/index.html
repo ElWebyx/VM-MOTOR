@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel de administración · VM MOTOR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-950: #0A0F2A; --navy-900: #0E1433; --navy-800: #151D4A; --navy-700: #1B2563;
+      --orange: #F28A1A; --orange-600: #DB7408; --orange-100: #FDEBD6;
+      --paper: #F3F4F8; --line: #E4E6EF; --ink: #0E1433; --muted: #5A6080;
+      --green: #1E8E5A; --red: #C8372D;
+      --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+      --f-body: "Poppins", system-ui, sans-serif;
+      --ease: cubic-bezier(.23, 1, .32, 1);
+      --soft: 0 18px 40px -24px rgba(14, 20, 51, .35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { font: 400 15px/1.5 var(--f-body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    a { color: inherit; }
+    [hidden] { display: none !important; }
+    h1, h2, h3 { margin: 0; font-family: var(--f-display); text-transform: uppercase; line-height: 1; }
+
+    /* botones */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: var(--navy-900); color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; cursor: pointer; transition: background .2s, transform .16s var(--ease); white-space: nowrap; }
+    .btn:active { transform: scale(.97); }
+    .btn--orange { background: var(--orange); color: var(--navy-900); }
+    .btn--ghost { background: #fff; color: var(--navy-900); box-shadow: inset 0 0 0 1.5px var(--line); }
+    .btn--danger { background: #fff; color: var(--red); box-shadow: inset 0 0 0 1.5px #F1C9C5; }
+    .btn--sm { min-height: 36px; padding: 0 14px; font-size: 13px; }
+    .btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover { background: var(--navy-700); }
+      .btn--orange:hover { background: #FFA53D; }
+      .btn--ghost:hover { background: var(--paper); }
+      .btn--danger:hover { background: #FDF0EF; }
+    }
+    .icon-btn { width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 10px; background: var(--paper); color: var(--navy-900); cursor: pointer; transition: background .2s, transform .16s var(--ease); }
+    .icon-btn:active { transform: scale(.94); }
+    .icon-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-btn--danger { color: var(--red); }
+    @media (hover: hover) and (pointer: fine) { .icon-btn:hover { background: var(--line); } }
+
+    /* formularios */
+    .field { display: grid; gap: 6px; }
+    .field > span { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .field input, .field select, .field textarea { width: 100%; min-height: 46px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .field textarea { min-height: 96px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 4px var(--orange-100); }
+    .field small { font-size: 13px; color: var(--muted); }
+
+    /* acceso */
+    .login { min-height: 100vh; display: grid; grid-template-columns: 1.1fr 1fr; }
+    .login__brand { position: relative; overflow: hidden; background: var(--navy-950); color: #fff; padding: clamp(32px, 6vw, 72px); display: flex; flex-direction: column; justify-content: space-between; }
+    .login__brand::after { content: ""; position: absolute; right: -20%; bottom: -30%; width: 80%; aspect-ratio: 1; border-radius: 50%; border: 2px solid rgba(242,138,26,.35); }
+    .login__brand::before { content: ""; position: absolute; right: -6%; bottom: -14%; width: 50%; aspect-ratio: 1; border-radius: 50%; background: var(--orange); opacity: .9; }
+    .login__brand h1 { position: relative; z-index: 1; font-size: clamp(48px, 6vw, 88px); max-width: 9ch; }
+    .login__brand h1 em { color: var(--orange); }
+    .login__brand p { position: relative; z-index: 1; max-width: 36ch; color: #C9CDE3; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; font: 800 italic 26px/1 var(--f-display); text-transform: uppercase; color: #fff; text-decoration: none; }
+    .logo b { display: grid; place-items: center; width: 42px; height: 34px; border-radius: 8px; background: #fff; color: var(--navy-900); font-size: 22px; }
+    .logo span { color: var(--orange); }
+    .login__form { display: grid; place-items: center; padding: 32px; background: #fff; }
+    .login__card { width: min(400px, 100%); display: grid; gap: 18px; }
+    .login__card h2 { font-size: 44px; }
+    .login__card p { margin: -8px 0 6px; color: var(--muted); }
+    .login__err { padding: 12px 14px; border-radius: 12px; background: #FDF0EF; color: var(--red); font-size: 14px; }
+    .link { background: none; border: 0; padding: 0; color: var(--navy-900); font-weight: 600; text-decoration: underline; cursor: pointer; justify-self: start; font-size: 14px; }
+    @media (max-width: 860px) { .login { grid-template-columns: 1fr; } .login__brand { min-height: 260px; } }
+
+    /* estructura */
+    .app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+    .side { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 32px; padding: 28px 18px; background: var(--navy-950); color: #fff; }
+    .side .logo { padding: 0 10px; }
+    .nav { display: grid; gap: 4px; }
+    .nav button { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 0; border-radius: 12px; background: transparent; color: #C9CDE3; font-weight: 500; text-align: left; cursor: pointer; transition: background .2s, color .2s; }
+    .nav button svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .nav button.is-active { background: var(--orange); color: var(--navy-900); font-weight: 600; }
+    @media (hover: hover) and (pointer: fine) { .nav button:not(.is-active):hover { background: var(--navy-800); color: #fff; } }
+    .nav .badge { margin-left: auto; min-width: 22px; padding: 2px 7px; border-radius: 999px; background: #fff; color: var(--navy-900); font-size: 12px; font-weight: 700; text-align: center; }
+    .side__foot { margin-top: auto; display: grid; gap: 10px; padding: 0 10px; font-size: 13px; color: #A9AFCB; }
+    .side__foot a, .side__foot button { color: #fff; }
+    .side__user { word-break: break-all; }
+    .main { padding: clamp(20px, 3vw, 40px); min-width: 0; }
+    .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+    .head h2 { font-size: clamp(40px, 4vw, 56px); }
+    .head p { margin: 8px 0 0; color: var(--muted); }
+    .head__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .mobile-top { display: none; }
+    @media (max-width: 900px) {
+      .app { grid-template-columns: 1fr; }
+      .side { position: fixed; z-index: 30; inset: 0 auto 0 0; width: 280px; transform: translateX(-100%); transition: transform .3s var(--ease); }
+      .side.is-open { transform: none; box-shadow: 0 0 0 100vmax rgba(10,15,42,.5); }
+      .mobile-top { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background: var(--navy-950); }
+    }
+
+    /* cifras */
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+    .kpi { padding: 20px; border-radius: 18px; background: #fff; box-shadow: var(--soft); }
+    .kpi:first-child { background: var(--navy-900); color: #fff; }
+    .kpi:first-child span { color: #C9CDE3; }
+    .kpi strong { display: block; font: 800 40px/1 var(--f-display); }
+    .kpi:first-child strong { color: var(--orange); }
+    .kpi span { font-size: 13px; color: var(--muted); }
+    @media (max-width: 760px) { .kpis { grid-template-columns: 1fr 1fr; } }
+
+    /* lista de coches */
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+    .toolbar .field { flex: 1 1 220px; }
+    .toolbar .field--sm { flex: 0 1 200px; }
+    .panel { background: #fff; border-radius: 18px; box-shadow: var(--soft); overflow: hidden; }
+    .row { display: grid; grid-template-columns: 96px minmax(0, 2fr) minmax(0, 1fr) 150px 150px 120px; gap: 16px; align-items: center; padding: 12px 18px; }
+    .row + .row { box-shadow: inset 0 1px 0 var(--line); }
+    .row--head { background: var(--paper); font-size: 13px; font-weight: 600; color: var(--muted); padding-block: 12px; }
+    .thumb { width: 96px; aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; background: var(--paper); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .row__name strong { display: block; font-weight: 600; }
+    .row__name span, .row__meta { font-size: 13px; color: var(--muted); }
+    .row__price { font: 800 26px/1 var(--f-display); }
+    .row__actions { display: flex; gap: 6px; justify-content: flex-end; }
+    .state { width: 100%; min-height: 38px; padding: 6px 12px; border: 0; border-radius: 999px; font-weight: 600; font-size: 13px; cursor: pointer; }
+    .state--disponible { background: #E3F4EB; color: var(--green); }
+    .state--reservado { background: var(--orange-100); color: var(--orange-600); }
+    .state--vendido { background: var(--line); color: var(--muted); }
+    .empty { padding: 48px 24px; text-align: center; color: var(--muted); }
+    .empty h3 { font-size: 30px; color: var(--ink); margin-bottom: 8px; }
+    @media (max-width: 1100px) {
+      .row { grid-template-columns: 80px minmax(0, 1fr) auto; grid-template-areas: "t n p" "t s a"; row-gap: 8px; }
+      .row--head { display: none; }
+      .thumb { grid-area: t; width: 80px; }
+      .row__name { grid-area: n; } .row__price { grid-area: p; text-align: right; }
+      .row__meta { display: none; }
+      .row__state { grid-area: s; } .row__actions { grid-area: a; }
+    }
+
+    /* editor */
+    dialog { border: 0; padding: 0; border-radius: 22px; width: min(920px, calc(100% - 24px)); max-height: calc(100dvh - 24px); box-shadow: 0 40px 80px -30px rgba(10,15,42,.6); }
+    dialog::backdrop { background: rgba(10,15,42,.6); backdrop-filter: blur(3px); }
+    .ed { display: flex; flex-direction: column; max-height: calc(100dvh - 24px); }
+    .ed__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 26px; background: var(--navy-950); color: #fff; }
+    .ed__head h3 { font-size: 34px; }
+    .ed__head .icon-btn { background: var(--navy-800); color: #fff; }
+    .ed__body { overflow: auto; padding: 26px; display: grid; gap: 26px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .grid .span2 { grid-column: span 2; } .grid .span3 { grid-column: 1 / -1; }
+    @media (max-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } .grid .span2, .grid .span3 { grid-column: 1 / -1; } }
+    .sec-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .sec-title h4 { margin: 0; font: 800 24px/1 var(--f-display); text-transform: uppercase; }
+    .sec-title small { color: var(--muted); font-size: 13px; }
+    .photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .ph { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: var(--paper); }
+    .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ph__cover { position: absolute; top: 8px; left: 8px; padding: 4px 10px; border-radius: 999px; background: var(--orange); color: var(--navy-900); font-size: 12px; font-weight: 700; }
+    .ph__tools { position: absolute; left: 6px; right: 6px; bottom: 6px; display: flex; justify-content: space-between; gap: 4px; }
+    .ph__tools button { width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 8px; background: rgba(10,15,42,.75); color: #fff; cursor: pointer; }
+    .ph__tools button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .ph__tools .del { background: var(--red); }
+    .drop { display: grid; place-items: center; gap: 6px; aspect-ratio: 4 / 3; border-radius: 12px; border: 2px dashed #C9CDE3; background: #fff; color: var(--muted); font-size: 13px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; }
+    .drop svg { width: 28px; height: 28px; fill: none; stroke: var(--orange); stroke-width: 2; }
+    .drop.is-over, .drop:hover { border-color: var(--orange); background: var(--orange-100); }
+    .ed__foot { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 18px 26px; box-shadow: inset 0 1px 0 var(--line); background: #fff; }
+
+    /* mensajes */
+    .msgs { display: grid; gap: 12px; }
+    .msg { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; padding: 20px 22px; border-radius: 18px; background: #fff; box-shadow: var(--soft); }
+    .msg.is-new { box-shadow: inset 4px 0 0 var(--orange), var(--soft); }
+    .msg__who strong { font-weight: 600; font-size: 16px; }
+    .msg__who span { display: block; font-size: 13px; color: var(--muted); }
+    .msg__tag { display: inline-block; margin-top: 6px; padding: 4px 10px; border-radius: 999px; background: var(--paper); font-size: 12px; font-weight: 600; }
+    .msg__text { grid-column: 1 / -1; margin: 4px 0 0; white-space: pre-wrap; }
+    .msg__actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; }
+
+    /* ajustes */
+    .settings { display: grid; gap: 18px; max-width: 860px; }
+    .card { padding: 24px; border-radius: 18px; background: #fff; box-shadow: var(--soft); }
+    .card h3 { font-size: 26px; margin-bottom: 4px; }
+    .card > p { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+
+    /* aviso */
+    .toast { position: fixed; z-index: 60; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; padding: 14px 20px; border-radius: 14px; background: var(--navy-900); color: #fff; font-weight: 500; box-shadow: 0 20px 40px -20px rgba(0,0,0,.5); transition: opacity .2s, transform .25s var(--ease); pointer-events: none; }
+    .toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+    .toast.is-err { background: var(--red); }
+    .spinner { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(1turn); } }
+    .loading { display: grid; place-items: center; min-height: 100vh; color: var(--navy-900); }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="loading" id="v-loading"><span class="spinner" aria-label="Cargando"></span></div>
+
+  <!-- ============ ACCESO ============ -->
+  <section class="login" id="v-login" hidden>
+    <div class="login__brand">
+      <a class="logo" href="/"><b>V</b>VM <span>MOTOR</span></a>
+      <h1>Panel de <em>gestión</em></h1>
+      <p>Coches, fotos, mensajes de clientes y datos de la web, todo desde aquí.</p>
+    </div>
+    <div class="login__form">
+      <form class="login__card" id="login-form" novalidate>
+        <h2>Entrar</h2>
+        <p>Accede con la cuenta de administrador.</p>
+        <div class="login__err" id="login-err" hidden></div>
+        <label class="field"><span>Correo</span><input type="email" name="email" autocomplete="username" required></label>
+        <label class="field"><span>Contraseña</span><input type="password" name="password" autocomplete="current-password" required></label>
+        <button class="btn btn--orange" type="submit" id="login-btn">Entrar al panel</button>
+        <button class="link" type="button" id="forgot">He olvidado la contraseña</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ PANEL ============ -->
+  <div class="app" id="v-app" hidden>
+    <aside class="side" id="side">
+      <a class="logo" href="/" target="_blank" rel="noopener"><b>V</b>VM <span>MOTOR</span></a>
+      <nav class="nav" aria-label="Secciones">
+        <button type="button" data-view="coches" class="is-active">
+          <svg viewBox="0 0 24 24"><path d="M5 17h14M3 13l2-6h14l2 6v4H3z"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>Coches
+        </button>
+        <button type="button" data-view="mensajes">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg>Mensajes<span class="badge" id="unread" hidden>0</span>
+        </button>
+        <button type="button" data-view="ajustes">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Ajustes de la web
+        </button>
+      </nav>
+      <div class="side__foot">
+        <a href="/" target="_blank" rel="noopener">Ver la web →</a>
+        <span class="side__user" id="user-email"></span>
+        <button type="button" class="link" id="logout">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="mobile-top">
+        <a class="logo" href="/"><b>V</b>VM <span>MOTOR</span></a>
+        <button type="button" class="icon-btn" id="menu" aria-label="Abrir menú"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+
+      <!-- Coches -->
+      <section id="view-coches">
+        <div class="head">
+          <div><h2>Coches</h2><p>Lo que pongas aquí es lo que aparece en la web.</p></div>
+          <div class="head__actions">
+            <button type="button" class="btn btn--ghost" id="import" hidden>Importar el stock actual</button>
+            <button type="button" class="btn btn--orange" id="add"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Añadir coche</button>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><strong id="k-venta">0</strong><span>en venta</span></div>
+          <div class="kpi"><strong id="k-res">0</strong><span>reservados</span></div>
+          <div class="kpi"><strong id="k-vend">0</strong><span>vendidos</span></div>
+          <div class="kpi"><strong id="k-valor">0 €</strong><span>valor del stock en venta</span></div>
+        </div>
+        <div class="toolbar">
+          <label class="field"><span>Buscar</span><input type="search" id="q" placeholder="Marca o modelo"></label>
+          <label class="field field--sm"><span>Estado</span>
+            <select id="f-estado"><option value="">Todos</option><option value="disponible">Disponibles</option><option value="reservado">Reservados</option><option value="vendido">Vendidos</option></select>
+          </label>
+        </div>
+        <div class="panel">
+          <div class="row row--head"><span>Foto</span><span>Coche</span><span>Datos</span><span>Precio</span><span>Estado</span><span></span></div>
+          <div id="list"></div>
+        </div>
+      </section>
+
+      <!-- Mensajes -->
+      <section id="view-mensajes" hidden>
+        <div class="head"><div><h2>Mensajes</h2><p>Lo que envían los clientes desde el formulario de contacto.</p></div></div>
+        <div class="msgs" id="msgs"></div>
+      </section>
+
+      <!-- Ajustes -->
+      <section id="view-ajustes" hidden>
+        <div class="head"><div><h2>Ajustes de la web</h2><p>Los cambios se ven en la web en cuanto se recarga.</p></div></div>
+        <form class="settings" id="settings">
+          <div class="card">
+            <h3>Aviso en la portada</h3>
+            <p>Un mensaje corto que sale encima del titular. Déjalo vacío para no mostrar nada.</p>
+            <label class="field"><span>Texto del aviso</span><input name="aviso" maxlength="120" placeholder="Ej.: Cerrado por vacaciones del 1 al 15 de agosto"></label>
+          </div>
+          <div class="card">
+            <h3>Contacto</h3>
+            <p>Número al que llegan los mensajes de WhatsApp de la web.</p>
+            <label class="field"><span>WhatsApp (con prefijo 34)</span><input name="whatsapp" inputmode="tel" placeholder="34628015594"></label>
+          </div>
+          <div class="card">
+            <h3>Horario</h3>
+            <p>Se muestra en la sección de contacto.</p>
+            <div class="grid">
+              <label class="field span2"><span>Lunes a viernes</span><input name="horarioSemana" placeholder="9:00 – 13:30 y 16:30 – 19:00"></label>
+              <label class="field"><span>Sábado y domingo</span><input name="horarioFinde" placeholder="Cerrado"></label>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Opiniones de Google</h3>
+            <p>Actualízalo cuando cambie la nota en Google.</p>
+            <div class="grid">
+              <label class="field"><span>Nota</span><input name="rating" placeholder="4,1"></label>
+              <label class="field"><span>Número de opiniones</span><input name="opiniones" inputmode="numeric" placeholder="66"></label>
+            </div>
+          </div>
+          <div><button class="btn btn--orange" type="submit">Guardar ajustes</button></div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============ EDITOR DE COCHE ============ -->
+  <dialog id="editor" aria-labelledby="ed-title">
+    <form class="ed" id="ed-form" novalidate>
+      <div class="ed__head">
+        <h3 id="ed-title">Nuevo coche</h3>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="ed__body">
+        <div>
+          <div class="sec-title"><h4>Datos</h4></div>
+          <div class="grid">
+            <label class="field"><span>Marca *</span><input name="brand" required list="brands" placeholder="Audi"></label>
+            <label class="field span2"><span>Modelo *</span><input name="model" required placeholder="Q5 2.0 TFSI quattro"></label>
+            <label class="field"><span>Precio (€) *</span><input name="price" type="number" min="0" step="10" required></label>
+            <label class="field"><span>Año *</span><input name="year" type="number" min="1950" max="2100" required></label>
+            <label class="field"><span>Kilómetros *</span><input name="km" type="number" min="0" step="1" required></label>
+            <label class="field"><span>Combustible</span>
+              <select name="fuel"><option>Gasolina</option><option>Diésel</option><option>Híbrido</option><option>Eléctrico</option><option>GLP</option></select>
+            </label>
+            <label class="field"><span>Potencia (CV)</span><input name="hp" type="number" min="0"></label>
+            <label class="field"><span>Estado</span>
+              <select name="estado"><option value="disponible">Disponible</option><option value="reservado">Reservado</option><option value="vendido">Vendido (no sale en la web)</option></select>
+            </label>
+            <label class="field span3"><span>Enlace al anuncio (coches.net u otro)</span><input name="url" type="url" placeholder="https://www.coches.net/..."></label>
+          </div>
+          <datalist id="brands"></datalist>
+        </div>
+        <div>
+          <div class="sec-title"><h4>Fotos</h4><small>La primera es la portada. Se reducen solas antes de subir.</small></div>
+          <div class="photos" id="ed-photos"></div>
+          <input type="file" id="ed-file" accept="image/*" multiple hidden>
+        </div>
+      </div>
+      <div class="ed__foot">
+        <button type="button" class="btn btn--danger" id="ed-delete">Eliminar coche</button>
+        <div style="display:flex;gap:10px;margin-left:auto">
+          <button type="button" class="btn btn--ghost" data-close>Cancelar</button>
+          <button type="submit" class="btn btn--orange" id="ed-save">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="/js/firebase-config.js"></script>
+  <script type="module">
+    const SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
+    const { initializeApp } = await import(SDK + "firebase-app.js");
+    const A = await import(SDK + "firebase-auth.js");
+    const F = await import(SDK + "firebase-firestore.js");
+
+    if (!window.FIREBASE_CONFIG || !window.FIREBASE_CONFIG.apiKey) {
+      document.getElementById("v-loading").hidden = true;
+      document.getElementById("v-login").hidden = false;
+      const e = document.getElementById("login-err");
+      e.textContent = "Falta la configuración de Firebase (public/js/firebase-config.js)."; e.hidden = false;
+      throw new Error("Sin configuración de Firebase");
+    }
+    const app = initializeApp(window.FIREBASE_CONFIG);
+    const auth = A.getAuth(app);
+    const db = F.getFirestore(app);
+
+    const $ = (s, el = document) => el.querySelector(s);
+    const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+    const euro = n => new Intl.NumberFormat("es-ES").format(Math.round(n || 0)).replace(/^(\d)(\d{3})$/, "$1.$2") + " €";
+    const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const CDN = "https://pro.fastly.ccdn.es/pro/pro/vehicles/images/";
+    const photoCache = {};
+    const photoSrc = p => {
+      if (!p) return Promise.reject();
+      if (p.startsWith("tmp:")) return photoCache[p];
+      if (p.startsWith("fs:")) {
+        const id = p.slice(3);
+        return photoCache[id] || (photoCache[id] = F.getDoc(F.doc(db, "fotos", id)).then(s => s.data().data));
+      }
+      if (p.startsWith("http") || p.startsWith("data:")) return Promise.resolve(p);
+      return Promise.resolve(`${CDN}${p}/1280x960/`);
+    };
+    const imgFor = (p, alt = "") => {
+      const img = new Image(); img.alt = alt; img.loading = "lazy"; img.decoding = "async";
+      photoSrc(p).then(src => (img.src = src)).catch(() => img.remove());
+      return img;
+    };
+
+    let toastT;
+    const toast = (msg, err) => {
+      const t = $("#toast"); t.textContent = msg; t.classList.toggle("is-err", !!err); t.classList.add("is-on");
+      clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("is-on"), 3200);
+    };
+    const show = id => ["v-loading", "v-login", "v-app"].forEach(v => ($("#" + v).hidden = v !== id));
+
+    /* ---------- acceso ---------- */
+    const errText = code => ({
+      "auth/invalid-credential": "Correo o contraseña incorrectos.",
+      "auth/invalid-email": "El correo no es válido.",
+      "auth/too-many-requests": "Demasiados intentos. Espera unos minutos.",
+      "auth/network-request-failed": "Sin conexión. Revisa internet."
+    }[code] || "No se ha podido entrar. Inténtalo otra vez.");
+    $("#login-form").addEventListener("submit", async e => {
+      e.preventDefault();
+      const f = e.target, btn = $("#login-btn");
+      $("#login-err").hidden = true; btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+      try { await A.signInWithEmailAndPassword(auth, f.email.value.trim(), f.password.value); }
+      catch (err) { $("#login-err").textContent = errText(err.code); $("#login-err").hidden = false; }
+      btn.disabled = false; btn.textContent = "Entrar al panel";
+    });
+    $("#forgot").addEventListener("click", async () => {
+      const email = $("#login-form").email.value.trim();
+      if (!email) { $("#login-err").textContent = "Escribe tu correo y vuelve a pulsar."; $("#login-err").hidden = false; return; }
+      try { await A.sendPasswordResetEmail(auth, email); toast("Te hemos enviado un correo para cambiar la contraseña."); }
+      catch (err) { toast(errText(err.code), true); }
+    });
+    $("#logout").addEventListener("click", () => A.signOut(auth));
+
+    let unsubs = [];
+    A.onAuthStateChanged(auth, async user => {
+      unsubs.forEach(u => u()); unsubs = [];
+      if (!user) { show("v-login"); return; }
+      const isAdmin = await F.getDoc(F.doc(db, "admins", user.uid)).then(s => s.exists()).catch(() => false);
+      if (!isAdmin) {
+        await A.signOut(auth);
+        $("#login-err").textContent = "Esta cuenta no tiene permisos de administrador.";
+        $("#login-err").hidden = false; return;
+      }
+      $("#user-email").textContent = user.email;
+      show("v-app");
+      startData();
+    });
+
+    /* ---------- navegación ---------- */
+    $$(".nav button").forEach(b => b.addEventListener("click", () => {
+      $$(".nav button").forEach(x => x.classList.toggle("is-active", x === b));
+      ["coches", "mensajes", "ajustes"].forEach(v => ($("#view-" + v).hidden = v !== b.dataset.view));
+      $("#side").classList.remove("is-open");
+    }));
+    $("#menu").addEventListener("click", () => $("#side").classList.toggle("is-open"));
+
+    /* ---------- coches ---------- */
+    let cars = [];
+    const ORDER = { disponible: 0, reservado: 1, vendido: 2 };
+    function startData() {
+      unsubs.push(F.onSnapshot(F.collection(db, "coches"), snap => {
+        cars = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        cars.sort((a, b) => (ORDER[a.estado] ?? 0) - (ORDER[b.estado] ?? 0) || (a.orden ?? 999) - (b.orden ?? 999) || b.price - a.price);
+        renderCars();
+      }, err => toast("No se pudieron cargar los coches: " + err.code, true)));
+      unsubs.push(F.onSnapshot(F.query(F.collection(db, "mensajes"), F.orderBy("creado", "desc")), snap => {
+        renderMsgs(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+      }));
+      F.getDoc(F.doc(db, "config", "web")).then(s => {
+        const d = s.exists() ? s.data() : {};
+        const f = $("#settings");
+        ["aviso", "whatsapp", "horarioSemana", "horarioFinde", "rating", "opiniones"].forEach(k => (f[k].value = d[k] ?? ""));
+      });
+    }
+    function renderCars() {
+      const q = $("#q").value.trim().toLowerCase(), st = $("#f-estado").value;
+      const venta = cars.filter(c => c.estado !== "vendido");
+      $("#k-venta").textContent = cars.filter(c => (c.estado || "disponible") === "disponible").length;
+      $("#k-res").textContent = cars.filter(c => c.estado === "reservado").length;
+      $("#k-vend").textContent = cars.filter(c => c.estado === "vendido").length;
+      $("#k-valor").textContent = euro(venta.reduce((s, c) => s + (+c.price || 0), 0));
+      $("#import").hidden = cars.length > 0 || typeof INVENTORY === "undefined";
+      $("#brands").innerHTML = [...new Set(cars.map(c => c.brand))].map(b => `<option value="${esc(b)}">`).join("");
+      const list = cars.filter(c => (!st || (c.estado || "disponible") === st) && (!q || `${c.brand} ${c.model}`.toLowerCase().includes(q)));
+      const box = $("#list");
+      if (!cars.length) {
+        box.innerHTML = `<div class="empty"><h3>Aún no hay coches</h3><p>Pulsa «Importar el stock actual» para cargar los 14 coches de la web, o añade uno nuevo.</p></div>`;
+        return;
+      }
+      if (!list.length) { box.innerHTML = `<div class="empty"><h3>Nada con ese filtro</h3></div>`; return; }
+      box.replaceChildren(...list.map(c => {
+        const r = document.createElement("div"); r.className = "row";
+        const estado = c.estado || "disponible";
+        r.innerHTML = `
+          <div class="thumb"></div>
+          <div class="row__name"><strong>${esc(c.brand)} ${esc(c.model)}</strong><span>${(c.photos || []).length} fotos</span></div>
+          <div class="row__meta">${esc(c.year)} · ${new Intl.NumberFormat("es-ES").format(c.km || 0)} km · ${esc(c.fuel || "")}</div>
+          <div class="row__price">${euro(c.price)}</div>
+          <div class="row__state"><select class="state state--${estado}" aria-label="Estado de ${esc(c.brand)} ${esc(c.model)}">
+            <option value="disponible">Disponible</option><option value="reservado">Reservado</option><option value="vendido">Vendido</option></select></div>
+          <div class="row__actions">
+            <button type="button" class="icon-btn" data-edit aria-label="Editar"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg></button>
+          </div>`;
+        if (c.photos?.[0]) $(".thumb", r).append(imgFor(c.photos[0]));
+        const sel = $("select", r); sel.value = estado;
+        sel.addEventListener("change", async () => {
+          sel.className = "state state--" + sel.value;
+          try { await F.updateDoc(F.doc(db, "coches", c.id), { estado: sel.value, actualizado: F.serverTimestamp() }); toast("Estado actualizado."); }
+          catch (err) { toast("No se pudo guardar: " + err.code, true); }
+        });
+        $("[data-edit]", r).addEventListener("click", () => openEditor(c));
+        return r;
+      }));
+    }
+    $("#q").addEventListener("input", renderCars);
+    $("#f-estado").addEventListener("change", renderCars);
+
+    $("#import").addEventListener("click", async () => {
+      if (typeof INVENTORY === "undefined") return;
+      if (!confirm(`Se van a crear ${INVENTORY.length} coches con los datos y fotos que tiene ahora la web. ¿Seguir?`)) return;
+      const btn = $("#import"); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Importando';
+      try {
+        const batch = F.writeBatch(db);
+        INVENTORY.forEach((c, i) => {
+          const { id, ...data } = c;
+          batch.set(F.doc(F.collection(db, "coches")), { ...data, estado: "disponible", orden: i, creado: F.serverTimestamp(), actualizado: F.serverTimestamp() });
+        });
+        await batch.commit(); toast("Stock importado.");
+      } catch (err) { toast("No se pudo importar: " + err.code, true); }
+      btn.disabled = false; btn.textContent = "Importar el stock actual";
+    });
+
+    /* ---------- editor ---------- */
+    const ed = $("#editor"), edForm = $("#ed-form");
+    let editing = null, edPhotos = [], removed = [];
+    function openEditor(car) {
+      editing = car || null;
+      edForm.reset(); removed = [];
+      edPhotos = [...(car?.photos || [])];
+      $("#ed-title").textContent = car ? `${car.brand} ${car.model}` : "Nuevo coche";
+      $("#ed-delete").hidden = !car;
+      if (car) ["brand", "model", "price", "year", "km", "fuel", "hp", "url"].forEach(k => (edForm[k].value = car[k] ?? ""));
+      edForm.estado.value = car?.estado || "disponible";
+      renderPhotos();
+      ed.showModal();
+    }
+    $("#add").addEventListener("click", () => openEditor(null));
+    $$("[data-close]", ed).forEach(b => b.addEventListener("click", () => ed.close()));
+
+    const I = {
+      left: '<svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>',
+      right: '<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>',
+      star: '<svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>',
+      del: '<svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></svg>'
+    };
+    function renderPhotos() {
+      const box = $("#ed-photos");
+      const items = edPhotos.map((p, i) => {
+        const d = document.createElement("div"); d.className = "ph";
+        d.append(imgFor(p, `Foto ${i + 1}`));
+        if (i === 0) d.insertAdjacentHTML("beforeend", '<span class="ph__cover">Portada</span>');
+        d.insertAdjacentHTML("beforeend", `<div class="ph__tools">
+          <button type="button" data-a="left" aria-label="Mover a la izquierda">${I.left}</button>
+          <button type="button" data-a="cover" aria-label="Poner de portada">${I.star}</button>
+          <button type="button" data-a="right" aria-label="Mover a la derecha">${I.right}</button>
+          <button type="button" class="del" data-a="del" aria-label="Quitar foto">${I.del}</button></div>`);
+        d.addEventListener("click", e => {
+          const a = e.target.closest("button")?.dataset.a; if (!a) return;
+          if (a === "left" && i > 0) [edPhotos[i - 1], edPhotos[i]] = [edPhotos[i], edPhotos[i - 1]];
+          if (a === "right" && i < edPhotos.length - 1) [edPhotos[i + 1], edPhotos[i]] = [edPhotos[i], edPhotos[i + 1]];
+          if (a === "cover") edPhotos.unshift(...edPhotos.splice(i, 1));
+          if (a === "del") { const [p] = edPhotos.splice(i, 1); if (p.startsWith("fs:")) removed.push(p.slice(3)); }
+          renderPhotos();
+        });
+        return d;
+      });
+      const drop = document.createElement("label");
+      drop.className = "drop"; drop.htmlFor = "ed-file";
+      drop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg><span><b>Subir fotos</b><br>o arrástralas aquí</span>';
+      ["dragenter", "dragover"].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add("is-over"); }));
+      ["dragleave", "drop"].forEach(t => drop.addEventListener(t, () => drop.classList.remove("is-over")));
+      drop.addEventListener("drop", e => { e.preventDefault(); addFiles(e.dataTransfer.files); });
+      box.replaceChildren(...items, drop);
+    }
+    $("#ed-file").addEventListener("change", e => { addFiles(e.target.files); e.target.value = ""; });
+
+    // reduce la foto en el navegador (máx. 1280 px, WebP) para que quepa en la base de datos
+    async function shrink(file) {
+      const bmp = await createImageBitmap(file);
+      const scale = Math.min(1, 1280 / Math.max(bmp.width, bmp.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+      c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+      for (const q of [0.8, 0.7, 0.6, 0.5]) {
+        const url = c.toDataURL("image/webp", q);
+        if (url.length < 850000) return url;
+      }
+      throw new Error("La foto es demasiado grande.");
+    }
+    const pending = new Map(); // id temporal -> dataURL aún sin subir
+    async function addFiles(files) {
+      for (const f of [...files].filter(f => f.type.startsWith("image/"))) {
+        try {
+          const data = await shrink(f);
+          const tmp = "tmp:" + Math.random().toString(36).slice(2);
+          pending.set(tmp, data); photoCache[tmp] = Promise.resolve(data);
+          edPhotos.push(tmp);
+        } catch (err) { toast(err.message || "No se pudo leer una foto.", true); }
+      }
+      renderPhotos();
+    }
+
+    edForm.addEventListener("submit", async e => {
+      e.preventDefault();
+      const req = ["brand", "model", "price", "year", "km"];
+      const bad = req.find(k => !edForm[k].value.trim());
+      if (bad) { edForm[bad].focus(); toast("Rellena los campos con asterisco.", true); return; }
+      const btn = $("#ed-save"); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Guardando';
+      try {
+        // sube las fotos nuevas
+        const finalPhotos = [];
+        for (const p of edPhotos) {
+          if (p.startsWith("tmp:")) {
+            const ref = await F.addDoc(F.collection(db, "fotos"), { data: pending.get(p), creado: F.serverTimestamp() });
+            photoCache[ref.id] = Promise.resolve(pending.get(p)); pending.delete(p);
+            finalPhotos.push("fs:" + ref.id);
+          } else finalPhotos.push(p);
+        }
+        const data = {
+          brand: edForm.brand.value.trim(), model: edForm.model.value.trim(),
+          price: +edForm.price.value, year: +edForm.year.value, km: +edForm.km.value,
+          fuel: edForm.fuel.value, hp: +edForm.hp.value || 0, url: edForm.url.value.trim(),
+          estado: edForm.estado.value, photos: finalPhotos, actualizado: F.serverTimestamp()
+        };
+        if (editing) await F.updateDoc(F.doc(db, "coches", editing.id), data);
+        else await F.addDoc(F.collection(db, "coches"), { ...data, orden: cars.length, creado: F.serverTimestamp() });
+        await Promise.all(removed.map(id => F.deleteDoc(F.doc(db, "fotos", id)).catch(() => {})));
+        ed.close(); toast(editing ? "Cambios guardados." : "Coche añadido.");
+      } catch (err) { toast("No se pudo guardar: " + (err.code || err.message), true); }
+      btn.disabled = false; btn.textContent = "Guardar";
+    });
+
+    $("#ed-delete").addEventListener("click", async () => {
+      if (!editing || !confirm(`¿Eliminar ${editing.brand} ${editing.model}? No se puede deshacer. Si solo se ha vendido, mejor cambia el estado a «Vendido».`)) return;
+      try {
+        await F.deleteDoc(F.doc(db, "coches", editing.id));
+        await Promise.all((editing.photos || []).filter(p => p.startsWith("fs:")).map(p => F.deleteDoc(F.doc(db, "fotos", p.slice(3))).catch(() => {})));
+        ed.close(); toast("Coche eliminado.");
+      } catch (err) { toast("No se pudo eliminar: " + err.code, true); }
+    });
+
+    /* ---------- mensajes ---------- */
+    function renderMsgs(list) {
+      const unread = list.filter(m => !m.leido).length;
+      $("#unread").hidden = !unread; $("#unread").textContent = unread;
+      const box = $("#msgs");
+      if (!list.length) { box.innerHTML = '<div class="card empty"><h3>Sin mensajes</h3><p>Cuando alguien rellene el formulario de la web, aparecerá aquí.</p></div>'; return; }
+      box.replaceChildren(...list.map(m => {
+        const d = document.createElement("article"); d.className = "msg" + (m.leido ? "" : " is-new");
+        const fecha = m.creado?.toDate ? m.creado.toDate().toLocaleString("es-ES", { dateStyle: "medium", timeStyle: "short" }) : "";
+        const tel = String(m.telefono || "").replace(/[^\d+]/g, "");
+        const wa = `https://wa.me/${tel.startsWith("+") ? tel.slice(1) : (tel.length === 9 ? "34" + tel : tel)}?text=${encodeURIComponent(`Hola ${m.nombre || ""}, te escribimos de VM MOTOR por tu mensaje en la web.`)}`;
+        d.innerHTML = `
+          <div class="msg__who"><strong>${esc(m.nombre)}</strong><span>${esc(m.telefono)} · ${esc(fecha)}</span><span class="msg__tag">${esc(m.interes)}</span></div>
+          <div class="msg__actions">
+            <a class="btn btn--sm btn--orange" href="${wa}" target="_blank" rel="noopener">Responder por WhatsApp</a>
+            <a class="btn btn--sm btn--ghost" href="tel:${esc(tel)}">Llamar</a>
+            <button type="button" class="btn btn--sm btn--ghost" data-read>${m.leido ? "Marcar como nuevo" : "Marcar como leído"}</button>
+            <button type="button" class="icon-btn icon-btn--danger" data-del aria-label="Borrar mensaje">${I.del}</button>
+          </div>
+          <p class="msg__text">${esc(m.mensaje)}</p>`;
+        $("[data-read]", d).addEventListener("click", () => F.updateDoc(F.doc(db, "mensajes", m.id), { leido: !m.leido }).catch(err => toast(err.code, true)));
+        $("[data-del]", d).addEventListener("click", () => confirm("¿Borrar este mensaje?") && F.deleteDoc(F.doc(db, "mensajes", m.id)).then(() => toast("Mensaje borrado.")).catch(err => toast(err.code, true)));
+        return d;
+      }));
+    }
+
+    /* ---------- ajustes ---------- */
+    $("#settings").addEventListener("submit", async e => {
+      e.preventDefault();
+      const f = e.target, data = {};
+      ["aviso", "whatsapp", "horarioSemana", "horarioFinde", "rating", "opiniones"].forEach(k => (data[k] = f[k].value.trim()));
+      data.whatsapp = data.whatsapp.replace(/\D/g, "");
+      try { await F.setDoc(F.doc(db, "config", "web"), { ...data, actualizado: F.serverTimestamp() }, { merge: true }); toast("Ajustes guardados."); }
+      catch (err) { toast("No se pudo guardar: " + err.code, true); }
+    });
+  </script>
+  <script src="/js/inventory.js"></script>
+</body>
+</html>
