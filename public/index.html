@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VM MOTOR | Coches de ocasión y segunda mano en Las Palmas de Gran Canaria</title>
+  <meta name="description" content="Concesionario de vehículos de ocasión y segunda mano en Guanarteme, Las Palmas de Gran Canaria. Garantía de 1 año, IGIC incluido y envío a todas las islas. Llámanos al 628 015 594.">
+  <meta name="theme-color" content="#0E1433">
+  <link rel="canonical" href="https://www.vmmotor.es/"><!-- PENDIENTE: cambiar por el dominio definitivo -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="VM MOTOR · Coches de ocasión en Las Palmas de Gran Canaria">
+  <meta property="og:description" content="Coches de ocasión con garantía de 1 año e IGIC incluido. Calle Almansa 78, Guanarteme.">
+  <link rel="icon" href="/img/logo-vmmotor.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoDealer",
+    "name": "VM MOTOR",
+    "description": "Concesionario de vehículos de ocasión y segunda mano en Las Palmas de Gran Canaria.",
+    "telephone": ["+34628015594", "+34928493782"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Almansa 78",
+      "addressLocality": "Las Palmas de Gran Canaria",
+      "postalCode": "35010",
+      "addressRegion": "Las Palmas",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 28.1288191, "longitude": -15.4425195 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "13:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "16:30", "closes": "19:00" }
+    ],
+    "sameAs": ["https://www.instagram.com/vmmotor_gc/", "https://www.coches.net/concesionario/vmmotor/"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+
+  <!-- ============ CABECERA ============ -->
+  <header class="nav" id="top">
+    <div class="nav__inner wrap">
+      <a href="#top" class="nav__brand" aria-label="VM MOTOR, volver al inicio">
+        <img src="/img/logo-vmmotor.svg" alt="" width="64" height="41">
+        <span>VM<b>MOTOR</b></span>
+      </a>
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#stock">Vehículos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="nav__phone" href="tel:+34628015594"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>628 015 594</a>
+      <button class="nav__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+    </div>
+    <div class="menu" id="mobile-menu" hidden>
+      <nav aria-label="Menú móvil">
+        <a href="#stock">Vehículos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="menu__foot">
+        <a href="tel:+34628015594">628 015 594</a>
+        <a href="tel:+34928493782">928 493 782</a>
+        <span>Calle Almansa 78, Guanarteme</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__glow" aria-hidden="true"><i></i><i></i></div>
+      <div class="hero__shop" aria-hidden="true"><img id="hero-shop" alt="" decoding="async"></div>
+      <div class="hero__bg" aria-hidden="true"><img id="hero-bg" alt="" decoding="async"></div>
+      <div class="hero__inner wrap">
+        <div class="hero__copy">
+          <p class="hero__notice" id="notice" hidden></p>
+          <h1 id="hero-title" class="hero__title"><span class="ln"><span>Tu próximo coche</span></span> <span class="ln"><span>está en <em>Guanarteme.</em></span></span></h1>
+          <p class="hero__lead hero__in" style="--d:.6s">Coches de ocasión y segunda mano que puedes ver en persona en nuestra exposición de la calle Almansa. Garantía de 1 año, IGIC incluido y envío a todas las islas.</p>
+
+          <form class="qs hero__in" id="quick-search" style="--d:.75s" aria-label="Búsqueda rápida">
+            <label class="qs__field">
+              <span>Marca</span>
+              <select id="qs-brand"><option value="">Todas las marcas</option></select>
+            </label>
+            <label class="qs__field">
+              <span>Precio hasta</span>
+              <select id="qs-price"><option value="">Cualquier precio</option></select>
+            </label>
+            <button class="btn btn--orange qs__btn" type="submit">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+              <span>Ver <b id="qs-count">14</b> coches</span>
+            </button>
+          </form>
+
+          <div class="hero__trust hero__in" style="--d:.9s">
+            <a href="https://www.google.com/maps/place/V+M+Motor/@28.1288191,-15.4425195,17z" target="_blank" rel="noopener" class="hero__rating">
+              <svg class="hero__star" aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+              <span><b data-cfg="rating">4,1</b> en Google · <span data-cfg="reviews">66</span> opiniones</span>
+            </a>
+            <a href="tel:+34628015594" class="hero__call">o llámanos: <b>628 015 594</b></a>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="wave wave--in" style="--from:transparent;--to:#FFFFFF" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/></svg></div>
+    </section>
+    <div class="factbar wrap"><ul class="factbar__list" aria-label="Datos clave">
+        <li><strong data-count="stock">11</strong><span>vehículos en stock</span></li>
+        <li><strong>1 año</strong><span>de garantía</span></li>
+        <li><strong>IGIC</strong><span>incluido en el precio</span></li>
+        <li><strong>Islas</strong><span>enviamos a todo Canarias</span></li>
+      </ul></div>
+
+    <!-- ============ NOSOTROS ============ -->
+    <section class="about" id="nosotros" aria-labelledby="about-title">
+     <div class="wrap about__layout">
+      <div class="about__visual reveal" aria-hidden="true">
+        <div class="about__photo about__photo--a" data-photo="local-escaparate" data-src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RkBDqfsQ67grpM-UjypneYcX3d8bSs2pPPO3yZEsam8utfH55RFglTzqc-bLOkh6HSRKqtnrG3LjQnbUpnIffTE1SkZzViBtfe52hgGBOHK1FCYwvp31-9o_42Jf9z-kQE3xS_uBSirNte=w1600" data-alt="Escaparate de VM MOTOR con la exposición de coches"><span class="about__cap">Nuestra exposición · Calle Almansa 78</span></div>
+        <div class="about__photo about__photo--b" data-photo="local-fachada" data-src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TeJMR8327ExrlHtGpHfM0M8KiN3JbkMD6KmUYbQas_0TNG-qRiZMHucr9PtIu8s_UtCO6ZLOyOWj678AHNMMMxXzVHSH8jl-rP_TlMH8EWHCC7HDyxitLaLPIGmeLuZeuB0v68=w1400" data-alt="Fachada de VM MOTOR en Guanarteme"></div>
+        <div class="about__badge"><strong data-count="stock">11</strong><span>coches<br>en stock</span></div>
+        <a class="about__rating" href="https://www.google.com/maps/place/V+M+Motor/@28.1288191,-15.4425195,17z" target="_blank" rel="noopener">
+          <svg class="hero__star" aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+          <strong data-cfg="rating">4,1</strong><span>en Google · <span data-cfg="reviews">66</span> opiniones</span>
+        </a>
+      </div>
+      <div class="about__content">
+      <div class="about__head reveal">
+        <h2 id="about-title" class="h2">Un concesionario de barrio</h2>
+        <p class="about__lead">Trato cercano y coches que puedes venir a ver, en la calle Almansa 78 de Guanarteme.</p>
+      </div>
+      <div class="about__grid">
+        <article class="about__item reveal">
+          
+          <h3>Quiénes somos</h3>
+          <p>VM MOTOR es un concesionario de vehículos de ocasión y segunda mano en Guanarteme, Las Palmas de Gran Canaria.</p>
+        </article>
+        <article class="about__item reveal">
+          
+          <h3>Qué ofrecemos</h3>
+          <p>Turismos, SUV y monovolúmenes de varias marcas, y también scooters y motocicletas.</p>
+        </article>
+        <article class="about__item reveal">
+          
+          <h3>Qué nos diferencia</h3>
+          <p>Si el coche que quieres no está en stock, te lo buscamos. Y si vives en otra isla, te lo enviamos.</p>
+        </article>
+      </div>
+      </div>
+     </div>
+    </section>
+
+    <!-- ============ ENCUENTRA TU COCHE ============ -->
+    
+
+    <!-- ============ STOCK ============ -->
+    <div class="wave " style="--from:#FFFFFF;--to:var(--orange)" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/><path class="wave__line" d="M0,30 C300,120 620,-10 900,60 C1120,112 1300,40 1440,70" fill="none" stroke="var(--navy-900)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg></div>
+    <section class="stock" id="stock" aria-labelledby="stock-title">
+      <div class="wrap">
+        <div class="stock__top">
+        <div class="stock__head head--center reveal">
+          <h2 id="stock-title" class="h2 h2--light">Nuestro stock</h2>
+          <p class="stock__lede">Coches de ocasión listos para ver en la calle Almansa. El precio que ves es el precio final, con IGIC incluido.</p>
+        </div>
+        <ul class="stock__stats reveal" aria-label="El stock en cifras">
+          <li><strong data-count="stock">14</strong><span>coches a la venta</span></li>
+          <li><strong id="st-brands">9</strong><span>marcas distintas</span></li>
+          <li><strong id="st-from">5.300 €</strong><span>el más económico</span></li>
+          <li><strong>1 año</strong><span>de garantía en todos</span></li>
+        </ul>
+        <div class="stock__brands" id="finder-brands" aria-label="Filtrar por marca"></div>
+        </div>
+        <div class="wave wave--bleed wave--flip" style="--from:var(--orange);--to:#0E1433" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/></svg></div>
+    
+
+        <form class="filters" id="filters" aria-label="Filtrar vehículos" onsubmit="return false">
+          <div class="filters__fuel" role="group" aria-label="Combustible">
+            <button type="button" class="chip is-active" data-fuel="">Todos</button>
+            <button type="button" class="chip" data-fuel="Gasolina">Gasolina</button>
+            <button type="button" class="chip" data-fuel="Diésel">Diésel</button>
+            <button type="button" class="chip chip--fav" id="fav-chip" aria-pressed="false">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+              Guardados <span id="fav-count">0</span>
+            </button>
+          </div>
+          <label class="field field--search">
+            <span>Buscar</span>
+            <input type="search" id="f-q" placeholder="Marca o modelo" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Marca</span>
+            <select id="f-brand"><option value="">Todas</option></select>
+          </label>
+          <label class="field">
+            <span>Año desde</span>
+            <select id="f-year"><option value="">Cualquiera</option></select>
+          </label>
+          <label class="field field--range">
+            <span>Precio máx. <output id="f-price-out"></output></span>
+            <input type="range" id="f-price" step="500">
+          </label>
+          <label class="field">
+            <span>Ordenar</span>
+            <select id="f-sort">
+              <option value="price-desc">Precio: mayor a menor</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="year-desc">Más recientes</option>
+              <option value="km-asc">Menos kilómetros</option>
+            </select>
+          </label>
+        </form>
+
+        <p class="stock__count" id="stock-count" aria-live="polite"></p>
+        <div class="cars" id="cars"></div>
+
+        <div class="empty" id="empty" hidden>
+          <h3>No hay coches con esos filtros</h3>
+          <p>Cuéntanos qué buscas y te lo encontramos nosotros.</p>
+          <div class="empty__ctas">
+            <button type="button" class="btn btn--line" id="reset-filters">Quitar filtros</button>
+            <a class="btn btn--orange js-wa" data-msg="Hola VM MOTOR, estoy buscando un coche y no lo encuentro en vuestro stock. Busco: " href="#contacto">Pedir búsqueda</a>
+          </div>
+        </div>
+
+        <p class="stock__more">¿Quieres ver todas las fotos y el equipamiento? <a href="https://www.coches.net/concesionario/vmmotor/" target="_blank" rel="noopener">Ver el escaparate completo en coches.net</a></p>
+      </div>
+    </section>
+
+    <!-- ============ CÓMO COMPRAR ============ -->
+    <div class="wave  wave--flip" style="--from:#0E1433;--to:#F3F4F8" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/></svg></div>
+    <section class="ways" aria-labelledby="ways-title">
+      <div class="wrap">
+        <div class="ways__head head--center reveal">
+          <h2 id="ways-title" class="h2">Dos formas de comprar</h2>
+          <p>Vengas a la exposición o nos escribas desde otra isla, el coche y el precio son los mismos.</p>
+        </div>
+        <div class="ways__grid">
+          <article class="way reveal">
+            <figure class="way__pic" data-photo="local-fachada" data-alt="Fachada de VM MOTOR en la calle Almansa"></figure>
+            <div class="way__body">
+              <h3>Ven, míralo y pruébalo</h3>
+              <p class="way__tag">En Guanarteme</p>
+              <ol>
+                <li>Elige en la web los coches que te interesan.</li>
+                <li>Pásate por la calle Almansa 78 de lunes a viernes.</li>
+                <li>Lo ves en persona, resolvemos tus dudas y cerramos la compra.</li>
+              </ol>
+              <a class="btn btn--navy" href="https://www.google.com/maps/search/?api=1&amp;query=Calle%20Almansa%2078%2C%2035010%20Las%20Palmas%20de%20Gran%20Canaria" target="_blank" rel="noopener">Cómo llegar</a>
+            </div>
+          </article>
+          <article class="way way--dark reveal">
+            <figure class="way__pic" data-photo="det-q5-interior" data-alt="Interior de un Audi Q5 de VM MOTOR"></figure>
+            <div class="way__body">
+              <h3>Sin moverte de casa</h3>
+              <p class="way__tag">Desde otra isla</p>
+              <ol>
+                <li>Elige el coche aquí y pulsa «Consultar».</li>
+                <li>Hablamos por WhatsApp o por teléfono y te contamos todo.</li>
+                <li>Te enviamos el coche a tu isla.</li>
+              </ol>
+              <a class="btn btn--orange js-wa" data-msg="Hola VM MOTOR, vivo en otra isla y me interesa uno de vuestros coches." href="#contacto">Consultar por WhatsApp</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ POR QUÉ ============ -->
+    <div class="wave " style="--from:#F3F4F8;--to:#0A0F2A" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/><path class="wave__line" d="M0,30 C300,120 620,-10 900,60 C1120,112 1300,40 1440,70" fill="none" stroke="var(--orange)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg></div>
+    <section class="why" aria-labelledby="why-title">
+      <div class="wrap why__grid">
+        <figure class="why__media reveal">
+          <span class="why__pic" data-photo="det-fiat-trasera" data-alt="Fiat 500 con la matrícula de VM MOTOR en la exposición"></span>
+          <span class="why__stamp"><strong>1 año</strong>de garantía</span>
+          <span class="why__rating"><b data-cfg="rating">4,1</b><span><i aria-hidden="true">★★★★<em>★</em></i><span data-cfg="reviews">66</span> opiniones en Google</span></span>
+        </figure>
+        <div class="why__body">
+          <h2 id="why-title" class="h2 h2--light reveal">Sin sorpresas al comprar</h2>
+          <p class="why__lead reveal">Lo que ves es lo que pagas. Cada coche sale de nuestra exposición con garantía, con el IGIC incluido en el precio y con alguien al otro lado del teléfono si te surge una duda.</p>
+          <dl class="why__facts">
+            <div class="reveal"><dt>1 año de garantía</dt><dd>Todos nuestros vehículos se venden con un año de garantía.</dd></div>
+            <div class="reveal"><dt>IGIC incluido</dt><dd>El precio que ves en la web es el precio final del coche.</dd></div>
+            <div class="reveal"><dt>Envío a todas las islas</dt><dd>Vivas en la isla que vivas, te hacemos llegar el coche.</dd></div>
+            <div class="reveal"><dt>Te lo buscamos</dt><dd>¿No está en el stock? Dinos cuál quieres y lo buscamos por ti.</dd></div>
+          </dl>
+          <div class="why__ctas reveal">
+            <a class="btn btn--orange" href="#stock">Ver los coches</a>
+            <a class="btn btn--ghost-light js-wa" data-msg="Hola VM MOTOR, tengo una pregunta sobre la garantía: " href="#contacto">Preguntar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <div class="wave  wave--flip" style="--from:#0A0F2A;--to:#FFFFFF" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/></svg></div>
+    <section class="services" id="servicios" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="services__head head--center reveal">
+          <h2 id="services-title" class="h2">Qué hacemos</h2>
+          <p>Vendemos coches y motos de segunda mano, y si no tenemos lo que buscas, lo buscamos.</p>
+        </div>
+        <div class="bento">
+          <a class="tile tile--photo tile--big reveal" href="#stock">
+            <span class="tile__pic" data-photo="local-escaparate" data-alt=""></span>
+            <span class="tile__body">
+              <h3>Coches de ocasión</h3>
+              <span>Turismos, SUV y monovolúmenes de varias marcas, en exposición en la calle Almansa.</span>
+              <span class="tile__go">Ver el stock <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </span>
+          </a>
+          <div class="tile tile--navy reveal">
+            <h3>Scooters y motos</h3>
+            <p>Además de coches, tenemos scooters y motocicletas. Pregúntanos qué unidades hay ahora.</p>
+          </div>
+          <a class="tile tile--orange reveal js-wa" data-msg="Hola VM MOTOR, me gustaría que me buscarais un coche. Busco: " href="#contacto">
+            <h3>Te lo buscamos</h3>
+            <p>Dinos marca, modelo y presupuesto, y buscamos el coche que encaje contigo.</p>
+            <span class="tile__go">Pedir búsqueda <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <div class="tile tile--wide tile--light reveal">
+            <h3>Envío a todas las islas</h3>
+            <p>Compras desde casa y te hacemos llegar el coche.</p>
+            <ul class="islands" aria-label="Islas">
+              <li>Gran Canaria</li><li>Tenerife</li><li>Lanzarote</li><li>Fuerteventura</li><li>La Palma</li><li>La Gomera</li><li>El Hierro</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <div class="wave " style="--from:#FFFFFF;--to:var(--orange)" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/><path class="wave__line" d="M0,30 C300,120 620,-10 900,60 C1120,112 1300,40 1440,70" fill="none" stroke="var(--navy-900)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg></div>
+    <section class="cta" aria-labelledby="cta-title">
+      <div class="cta__shapes" aria-hidden="true"><i data-depth="0.6"></i><i data-depth="-0.4"></i><i data-depth="0.25"></i></div>
+      <div class="wrap cta__inner reveal">
+        <h2 id="cta-title" class="cta__title">¿No ves tu coche?<br><span>Te lo buscamos.</span></h2>
+        <div class="cta__side">
+          <p>Escríbenos por WhatsApp con lo que buscas y te contestamos nosotros, sin compromiso.</p>
+          <div class="cta__btns">
+            <a class="btn btn--navy js-wa magnet" data-msg="Hola VM MOTOR, me gustaría que me buscarais un coche. Busco: " href="#contacto">
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="wa"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+              Escribir por WhatsApp
+            </a>
+            <a class="btn btn--line-navy" href="tel:+34928493782">Llamar al 928 493 782</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <div class="wave  wave--flip" style="--from:var(--orange);--to:#FFFFFF" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/></svg></div>
+    <!-- ============ FAQ ============ -->
+    <section class="faq wrap" id="faq" aria-labelledby="faq-title">
+      <div class="faq__head head--center reveal">
+        <h2 id="faq-title" class="h2">Lo que más nos preguntan</h2>
+      </div>
+      <div class="faq__list">
+        <details class="reveal">
+          <summary>¿Los precios incluyen IGIC?</summary>
+          <p>Sí. Todos los precios que publicamos llevan el IGIC incluido.</p>
+        </details>
+        <details class="reveal">
+          <summary>¿Los coches tienen garantía?</summary>
+          <p>Sí, todos nuestros vehículos se venden con 1 año de garantía.</p>
+        </details>
+        <details class="reveal">
+          <summary>Vivo en otra isla, ¿puedo comprar un coche?</summary>
+          <p>Claro. Enviamos los vehículos a todas las islas. Llámanos o escríbenos y te contamos cómo hacerlo.</p>
+        </details>
+        <details class="reveal">
+          <summary>Busco un modelo que no tenéis, ¿qué hago?</summary>
+          <p>Dinos qué coche quieres y lo buscamos por ti. La forma más rápida es escribirnos por WhatsApp.</p>
+        </details>
+        <details class="reveal">
+          <summary>¿Vendéis motos?</summary>
+          <p>Sí, además de coches tenemos scooters y motocicletas. Pregúntanos por las unidades disponibles en cada momento.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="contact" id="contacto" aria-labelledby="contact-title">
+      <div class="contact__hero">
+        <div class="wave wave--top" style="--from:transparent;--to:#FFFFFF" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/></svg></div>
+    
+        <div class="contact__bg" aria-hidden="true" data-photo="local-fachada"></div>
+        <div class="wrap contact__hero-in reveal">
+          <h2 id="contact-title" class="h2 h2--light">Ven a vernos a Guanarteme.</h2>
+          <p>Calle Almansa 78 · 35010 Las Palmas de Gran Canaria <span class="status" id="open-status"></span></p>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="cinfo reveal">
+          <div class="cinfo__item">
+            <h3>Llámanos</h3>
+            <a class="cinfo__big" href="tel:+34628015594">628 015 594</a>
+            <a class="cinfo__big" href="tel:+34928493782">928 493 782</a>
+          </div>
+          <div class="cinfo__item">
+            <h3>Horario</h3>
+            <table class="hours">
+              <tr><th scope="row">Lunes a viernes</th><td data-cfg="horario_semana">9:00 – 13:30<br>16:30 – 19:00</td></tr>
+              <tr><th scope="row">Sábado y domingo</th><td data-cfg="horario_finde">Cerrado</td></tr>
+            </table>
+          </div>
+          <div class="cinfo__item">
+            <h3>Dónde estamos</h3>
+            <p>Calle Almansa 78, Guanarteme<br>35010 Las Palmas de Gran Canaria</p>
+            <a class="cinfo__link" href="https://www.google.com/maps/search/?api=1&amp;query=Calle%20Almansa%2078%2C%2035010%20Las%20Palmas%20de%20Gran%20Canaria" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          </div>
+        </div>
+        <div class="contact__inner">
+          <div class="map reveal" id="map">
+            <a class="map__static" data-photo="map-static" data-alt="Mapa de Google Maps con VM MOTOR en la calle Almansa 78, Guanarteme" href="https://www.google.com/maps/search/?api=1&amp;query=VM%20Motor%20Calle%20Almansa%2078%2C%2035010%20Las%20Palmas%20de%20Gran%20Canaria" target="_blank" rel="noopener" aria-label="Abrir la ubicación de VM MOTOR en Google Maps"></a>
+            <button type="button" class="map__live" id="map-load">Mover el mapa</button>
+          </div>
+          <form class="form reveal" id="contact-form" novalidate>
+          <p class="form__title">Escríbenos</p>
+          <p class="form__sub">Al enviar se abrirá WhatsApp con tu mensaje listo para mandar.</p>
+          <label class="input">
+            <span>Nombre</span>
+            <input type="text" name="name" autocomplete="name" required>
+            <small class="input__err">Escribe tu nombre.</small>
+          </label>
+          <label class="input">
+            <span>Teléfono</span>
+            <input type="tel" name="phone" autocomplete="tel" inputmode="tel" required pattern="[0-9 +]{9,15}">
+            <small class="input__err">Escribe un teléfono válido.</small>
+          </label>
+          <label class="input">
+            <span>Me interesa</span>
+            <select name="topic" id="form-topic">
+              <option>Información general</option>
+              <option>Que me busquéis un coche</option>
+              <option>Scooters y motos</option>
+              <option>Envío a otra isla</option>
+            </select>
+          </label>
+          <label class="input">
+            <span>Mensaje</span>
+            <textarea name="message" rows="4" required></textarea>
+            <small class="input__err">Cuéntanos en qué podemos ayudarte.</small>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="privacy" required>
+            <span>He leído y acepto la <a href="#privacidad" data-legal>política de privacidad</a>.</span>
+          </label>
+          <small class="input__err input__err--check">Debes aceptar la política de privacidad.</small>
+          <button class="btn btn--orange btn--block" type="submit">Enviar por WhatsApp</button>
+          <p class="form__status" id="form-status" role="status"></p>
+        </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <div class="wave " style="--from:#F3F4F8;--to:#0A0F2A" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,58 C260,128 560,4 860,52 C1110,92 1290,86 1440,36 L1440,121 L0,121Z" fill="currentColor"/><path class="wave__line" d="M0,30 C300,120 620,-10 900,60 C1120,112 1300,40 1440,70" fill="none" stroke="var(--orange)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg></div>
+  <footer class="footer">
+    <div class="wrap footer__top">
+      <p class="footer__claim">¿Dudas con algún coche?<span>Te contestamos nosotros, sin compromiso.</span></p>
+      <a class="btn btn--orange js-wa" data-msg="Hola VM MOTOR, tengo una pregunta: " href="#contacto">Escríbenos por WhatsApp</a>
+    </div>
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <img src="/img/logo-vmmotor.svg" alt="VM MOTOR" width="120" height="77" loading="lazy">
+        <p>Concesionario de vehículos de ocasión y segunda mano en Guanarteme, Las Palmas de Gran Canaria.</p>
+      </div>
+      <nav aria-label="Pie de página">
+        <h4>La web</h4>
+        <a href="#stock">Vehículos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div>
+        <h4>Contacto</h4>
+        <a href="tel:+34628015594">628 015 594</a>
+        <a href="tel:+34928493782">928 493 782</a>
+        <span>Calle Almansa 78, Guanarteme</span>
+        <span>L-V 9:00–13:30 y 16:30–19:00</span>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <a href="https://www.instagram.com/vmmotor_gc/" target="_blank" rel="noopener">Instagram · @vmmotor_gc</a>
+        <a href="https://www.coches.net/concesionario/vmmotor/" target="_blank" rel="noopener">Escaparate en coches.net</a>
+      </div>
+    </div>
+    <div class="wrap footer__legal">
+      <span>© <span id="year">2026</span> VM MOTOR · Foto de portada: <a href="https://unsplash.com/photos/FMbWFDiVRPs" target="_blank" rel="noopener">Samuele Errico Piccarini / Unsplash</a></span>
+      <nav aria-label="Legal">
+        <a href="#aviso-legal" data-legal>Aviso legal</a>
+        <a href="#privacidad" data-legal>Privacidad</a>
+        <a href="#cookies" data-legal>Cookies</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Textos legales -->
+  <dialog class="modal modal--legal" id="legal-modal" aria-labelledby="legal-title">
+    <div class="legal">
+      <button class="modal__close" type="button" data-close aria-label="Cerrar">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <h2 id="legal-title" class="legal__title">Información legal</h2>
+      <section id="aviso-legal">
+        <h3>Aviso legal</h3>
+        <p class="todo">PENDIENTE: titular (razón social o nombre), NIF/CIF, domicilio fiscal, correo electrónico y datos registrales que facilite VM MOTOR.</p>
+        <p>Domicilio comercial: Calle Almansa 78, Guanarteme, 35010 Las Palmas de Gran Canaria. Teléfonos: 628 015 594 · 928 493 782.</p>
+      </section>
+      <section id="privacidad">
+        <h3>Política de privacidad</h3>
+        <p>Los datos que escribas en el formulario de contacto no se guardan en esta web: se usan para preparar un mensaje que tú mismo envías por WhatsApp a VM MOTOR.</p>
+        <p class="todo">PENDIENTE: responsable del tratamiento, finalidad, base legal, plazo de conservación y cómo ejercer los derechos (acceso, rectificación, supresión…). Texto a facilitar o validar por VM MOTOR.</p>
+      </section>
+      <section id="cookies">
+        <h3>Política de cookies</h3>
+        <p>Esta web no instala cookies propias. Los coches que guardas con el corazón se quedan solo en tu navegador. El mapa de Google solo se carga si pulsas «Ver mapa», y las publicaciones de Instagram al llegar a esa sección; a partir de ese momento Google o Instagram pueden instalar sus propias cookies.</p>
+        <p class="todo">PENDIENTE: valorar un aviso de consentimiento de cookies antes de cargar Instagram y Google Maps.</p>
+      </section>
+    </div>
+  </dialog>
+
+  <!-- Ficha de vehículo -->
+  <dialog class="modal" id="car-modal" aria-labelledby="modal-title">
+    <div class="modal__box">
+      <button class="modal__close" type="button" data-close aria-label="Cerrar ficha">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="modal__gallery">
+        <div class="modal__media" id="modal-media"></div>
+        <button type="button" class="gal__nav gal__prev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="gal__nav gal__next" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        <span class="gal__count" id="gal-count"></span>
+        <div class="gal__thumbs" id="gal-thumbs"></div>
+      </div>
+      <div class="modal__body">
+        <p id="modal-brand" hidden></p>
+        <h2 class="modal__title" id="modal-title"></h2>
+        <p class="modal__price" id="modal-price"></p>
+        <p class="modal__note">IGIC incluido · 1 año de garantía</p>
+        <dl class="modal__specs" id="modal-specs"></dl>
+        <div class="modal__ctas">
+          <a class="btn btn--orange" id="modal-wa" target="_blank" rel="noopener">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="wa"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+            Consultar por WhatsApp
+          </a>
+          <a class="btn btn--line" href="tel:+34628015594">Llamar</a>
+        </div>
+        <a class="modal__ext" id="modal-ext" target="_blank" rel="noopener">Ver todas las fotos y el equipamiento en coches.net →</a>
+      </div>
+    </div>
+  </dialog>
+
+  <a href="#top" class="totop" id="totop" aria-label="Volver arriba">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+  </a>
+
+  <!-- Barra de contacto fija en móvil -->
+  <div class="mbar" aria-label="Contacto rápido">
+    <a href="tel:+34628015594" class="mbar__call">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+      Llamar
+    </a>
+    <a href="#contacto" class="mbar__wa js-wa" data-msg="Hola VM MOTOR, quería información sobre vuestros vehículos.">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+
+  <script src="/js/fotos.js"></script>
+  <script src="/js/inventory.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
