@@ -1,0 +1,30 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Solo las cuentas con un documento en /admins/{uid} pueden editar
+    function isAdmin() {
+      return request.auth != null && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /coches/{id}  { allow read: if true; allow write: if isAdmin(); }
+    match /fotos/{id}   { allow read: if true; allow write: if isAdmin(); }
+    match /config/{id}  { allow read: if true; allow write: if isAdmin(); }
+
+    // El formulario de la web puede crear mensajes; solo el admin los lee
+    match /mensajes/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['nombre', 'telefono', 'interes', 'mensaje', 'leido', 'creado'])
+        && request.resource.data.nombre is string && request.resource.data.nombre.size() <= 120
+        && request.resource.data.telefono is string && request.resource.data.telefono.size() <= 30
+        && request.resource.data.interes is string && request.resource.data.interes.size() <= 80
+        && request.resource.data.mensaje is string && request.resource.data.mensaje.size() <= 2000
+        && request.resource.data.leido == false
+        && request.resource.data.creado == request.time;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+  }
+}
